@@ -1,7 +1,8 @@
 import { Module } from '@nestjs/common';
 import { TransactionsController } from './controllers/transactions.controller';
 import { CreateTransactionUseCase } from './use-cases/create-transaction.use-case';
-import { InMemoryTransactionRepository } from './infra/in-memory.transaction.repository';
+import { DeleteAllTransactionsUseCase } from './use-cases/delete-all-transactions.use-case';
+import { InMemoryTransactionRepository } from './repositories/in-memory.transaction.repository';
 
 @Module({
   controllers: [TransactionsController],
@@ -13,6 +14,11 @@ import { InMemoryTransactionRepository } from './infra/in-memory.transaction.rep
     {
       provide: CreateTransactionUseCase,
       useFactory: (repo) => new CreateTransactionUseCase(repo),
+      inject: ['TransactionRepository'],
+    },
+    {
+      provide: DeleteAllTransactionsUseCase,
+      useFactory: (repo) => new DeleteAllTransactionsUseCase(repo),
       inject: ['TransactionRepository'],
     },
   ],
