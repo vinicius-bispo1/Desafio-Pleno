@@ -1,13 +1,15 @@
-import { Body, Controller, Post, Delete, HttpException, HttpStatus } from '@nestjs/common';
+import { Body, Controller, Post, Delete, Get, HttpException, HttpStatus } from '@nestjs/common';
 import { CreateTransactionDto } from '../dto/create-transaction.dto';
 import { CreateTransactionUseCase } from '../use-cases/create-transaction.use-case';
 import { DeleteAllTransactionsUseCase } from '../use-cases/delete-all-transactions.use-case';
+import { GetStatisticsUseCase } from '../use-cases/get-statistics.use-case';
 
 @Controller()
 export class TransactionsController {
   constructor(
     private readonly createUC: CreateTransactionUseCase,
     private readonly deleteUC: DeleteAllTransactionsUseCase,
+    private readonly statsUC: GetStatisticsUseCase,
   ) {}
 
   @Post('/transactions')
@@ -24,5 +26,10 @@ export class TransactionsController {
   deleteAll() {
     this.deleteUC.execute();
     return { message: 'All transactions deleted successfully.' };
+  }
+
+  @Get('/statistics')
+  getStatistics() {
+    return this.statsUC.execute();
   }
 }
