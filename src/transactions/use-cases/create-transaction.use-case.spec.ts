@@ -1,5 +1,5 @@
 import { CreateTransactionUseCase } from './create-transaction.use-case';
-import { TransactionRepository } from '../repositories/transaction.repository.interface';
+import { TransactionRepository } from '../interfaces/transaction.repository.interface';
 import { Transaction } from '../entities/transaction.entity';
 
 describe('CreateTransactionUseCase', () => {
@@ -9,6 +9,7 @@ describe('CreateTransactionUseCase', () => {
   beforeEach(() => {
     mockRepo = {
       add: jest.fn(),
+      deleteAll: jest.fn(),
     };
 
     useCase = new CreateTransactionUseCase(mockRepo);
@@ -36,9 +37,9 @@ describe('CreateTransactionUseCase', () => {
     expect(() => useCase.execute(amount, timestamp)).toThrow('Amount cannot be negative');
   });
 
-  it('deve lançar erro se o timestamp for no futuro', () => {
+  it('não deve permitir timestamp até mesmo 1ms no futuro', () => {
     const amount = 100;
-    const timestamp = new Date(Date.now() + 10000); // 10s no futuro
+    const timestamp = new Date(Date.now() + 1);
 
     expect(() => useCase.execute(amount, timestamp)).toThrow('Timestamp is in the future');
   });
