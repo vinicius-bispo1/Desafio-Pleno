@@ -9,6 +9,7 @@ describe('DeleteAllTransactionsUseCase', () => {
     mockRepo = {
       add: jest.fn(),
       deleteAll: jest.fn(),
+      getAll: jest.fn(),
     };
 
     useCase = new DeleteAllTransactionsUseCase(mockRepo);
