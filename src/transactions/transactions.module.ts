@@ -4,10 +4,15 @@ import { CreateTransactionUseCase } from './use-cases/create-transaction.use-cas
 import { DeleteAllTransactionsUseCase } from './use-cases/delete-all-transactions.use-case';
 import { GetStatisticsUseCase } from './use-cases/get-statistics.use-case';
 import { InMemoryTransactionRepository } from './repositories/in-memory.transaction.repository';
-
+import { APP_GUARD } from '@nestjs/core';
+import { ThrottlerGuard } from '@nestjs/throttler';
 @Module({
   controllers: [TransactionsController],
   providers: [
+    {
+      provide: APP_GUARD,
+      useClass: ThrottlerGuard,
+    },
     {
       provide: 'TransactionRepository',
       useClass: InMemoryTransactionRepository,
