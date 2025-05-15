@@ -63,15 +63,12 @@ NODE_ENV=development
 
 ---
 
-### ▶️ Executando o Projeto
+### 🐳 Docker
+
+1. **Build e execução com Docker Compose**:
 
 ```bash
-# Desenvolvimento com reload
-yarn run start
-
-# Produção
-yarn build
-yarn start
+docker-compose up --build
 ```
 
 Acesse: [http://localhost:3000](http://localhost:3000)
@@ -143,16 +140,6 @@ Disponível em: [http://localhost:3000/api](http://localhost:3000/api)
 
 - Apenas transações dos últimos 60 segundos são consideradas
 - **200 OK**
-
----
-
-### 🐳 Docker
-
-1. **Build e execução com Docker Compose**:
-
-```bash
-docker-compose up --build
-```
 
 ---
 
