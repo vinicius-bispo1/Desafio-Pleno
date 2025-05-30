@@ -44,7 +44,7 @@ financeiro/
 1. **Clone o projeto**:
 
 ```bash
-git clone https://github.com/seu-usuario/financeiro.git
+git clone https://github.com/vinicius-bispo1/projeto-financeiro.git
 cd financeiro
 ```
 
