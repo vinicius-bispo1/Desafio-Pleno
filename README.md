@@ -104,7 +104,7 @@ Disponível em: [http://localhost:3000/api](http://localhost:3000/api)
 ```json
 {
   "amount": 150.75,
-  "timestamp": "2025-05-15T12:00:00.000Z"
+  "timestamp": "2025-05-15T12:00:00.000"
 }
 ```
 
